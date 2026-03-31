@@ -3,11 +3,11 @@ import Image from 'next/image';
 import { urlFor } from '@/sanity/lib/image';
 
 export function MelangeDescriptionSection({ data }: { data?: any }) {
-  const title = data?.title || 'What is Mélange?';
-  const card1Title = data?.card1Title || 'A Mélange, Not a Marketplace';
-  const card1Description = data?.card1Description || "We're not a typical bidding platform; Mélange Rwanda is a curated freelance team that brings Rwandan professionals together with North American standards to create something new.";
-  const card2Title = data?.card2Title || 'Why "Mélange"?';
-  const card2Description = data?.card2Description || "'Mélange' means a harmonious mixture of diverse elements—Rwandan talent meets global opportunities and local excellence drives our success.";
+  const title = 'What is Mélange?';
+  const card1Title = 'A Mélange, not a marketplace';
+  const card1Description = 'We are not a platform where you bid against hundreds for projects. We are building something different: a curated freelance team where Rwandan professionals and North American standards blend into something entirely new.';
+  const card2Title = 'Why "Mélange"?';
+  const card2Description = '\'Mélange\' means a thoughtful mixture of different elements. That\'s exactly what we are building: Rwandan Talent + Global Opportunity and North American Standards + Local Excellence.';
   const imageUrl = data?.image ? urlFor(data.image).url() : '/2.jpg';
 
   return (
@@ -15,15 +15,11 @@ export function MelangeDescriptionSection({ data }: { data?: any }) {
       id="about"
       className="w-full py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 bg-transparent relative overflow-hidden"
     >
-      {/* Decorative blobs */}
-      <div className="absolute top-1/2 left-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl -z-10 transform -translate-y-1/2 -translate-x-1/2" />
-      <div className="absolute top-0 right-0 w-2 h-full bg-accent" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-secondary/10 rounded-full blur-3xl -z-10 transform translate-y-1/4 translate-x-1/4" />
-
+      
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16 sm:mb-20">
           <ScrollAnimator variant="fade-down" duration={700}>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight uppercase">
+            <h2 className="text-3xl sm:text-4xl md:text-[44px] font-semibold text-[#1A1A1A] tracking-tight font-playfair">
               {title}
             </h2>
           </ScrollAnimator>
@@ -50,10 +46,10 @@ export function MelangeDescriptionSection({ data }: { data?: any }) {
           <div className="lg:col-span-3 space-y-8">
             <ScrollAnimator variant="fade-left" duration={800} delay={100}>
               <div className="space-y-6">
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-primary tracking-tight">
-                  A Mélange, Not a Marketplace
+                <h3 className="text-xl sm:text-2xl font-semibold text-primary tracking-tight font-montserrat">
+                  {card1Title}
                 </h3>
-                <p className="text-lg sm:text-xl text-slate-600 leading-relaxed font-medium">
+                <p className="text-[18px] text-[#333333] font-normal font-inter leading-relaxed">
                   {card1Description}
                 </p>
               </div>
@@ -61,10 +57,10 @@ export function MelangeDescriptionSection({ data }: { data?: any }) {
 
             <ScrollAnimator variant="fade-left" duration={800} delay={250}>
               <div className="space-y-6">
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-[#009933] tracking-tight">
+                <h3 className="text-xl sm:text-2xl font-semibold text-primary tracking-tight font-montserrat">
                   {card2Title}
                 </h3>
-                <p className="text-lg sm:text-xl text-slate-600 leading-relaxed font-medium">
+                <p className="text-[18px] text-[#333333] font-normal font-inter leading-relaxed">
                   {card2Description}
                 </p>
               </div>

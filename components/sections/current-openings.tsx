@@ -33,18 +33,16 @@ export default async function CurrentOpeningsSection({ initialJobs }: { initialJ
             fill
             className="object-cover hover:scale-105 transition-transform duration-1000"
           />
-          <div className="absolute inset-0 bg-primary/60 mix-blend-multiply" />
+          <div className="absolute inset-0 bg-black/40" />
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
             <ScrollAnimator variant="fade-down" duration={700} delay={200}>
-              <h2 className="text-1xl sm:text-3xl md:text-3xl font-extrabold mb-4 text-white drop-shadow-md uppercase tracking-tight">
-                JOIN OUR FOUNDING TEAM: CURRENT OPENINGS
+              <h2 className="text-3xl sm:text-4xl md:text-[44px] font-semibold mb-4 text-white drop-shadow-md font-playfair tracking-tight">
+                Now hiring: founding team
               </h2>
             </ScrollAnimator>
             <ScrollAnimator variant="fade-up" duration={600} delay={350}>
-              <p className="text-base sm:text-lg lg:text-xl text-slate-100 max-w-2xl font-medium drop-shadow-md">
-                We're assembling an exceptional team of freelancers for exciting projects. Click below for
-                the full job details.
-              </p>
+              <p className="text-base sm:text-lg lg:text-xl text-white/90 max-w-2xl font-inter font-normal drop-shadow-md">
+              We're assembling an exceptional team of freelancers for exciting projects. Click below for the full job details. </p>
             </ScrollAnimator>
           </div>
         </div>
@@ -54,9 +52,9 @@ export default async function CurrentOpeningsSection({ initialJobs }: { initialJ
 
         {/* Job table – zooms in with proper scrolling */}
         <ScrollAnimator variant="zoom-in" duration={800} delay={100}>
-          <div className="bg-white rounded-3xl shadow-xl border border-slate-100 p-4 sm:p-6 lg:p-10 mb-8 -mt-24 relative z-10 hover-lift">
+          <div className="bg-white rounded-[40px] shadow-2xl border border-slate-50 p-6 sm:p-10 lg:p-16 mb-8 -mt-32 relative z-10">
             {error ? (
-              <p className="text-red-500 text-center py-8">{error}</p>
+              <p className="text-red-500 text-center py-8 font-inter">{error}</p>
             ) : (
               <JobTable jobs={jobs} />
             )}
@@ -65,19 +63,16 @@ export default async function CurrentOpeningsSection({ initialJobs }: { initialJ
 
         {/* CTA – slides up */}
         <ScrollAnimator variant="fade-up" duration={700} delay={200}>
-          <div className="text-center mt-8 sm:mt-12 bg-secondary/5 p-6 sm:p-8 rounded-3xl border border-secondary/20 hover-lift">
-            <p className="text-base sm:text-lg text-slate-700 font-medium mb-4">
-              Not seeing your exact role?
-              If you have exceptional skills in writing, research, design, or operations that don't fit these exact
-              descriptions, we still want to hear from you
+          <div className="text-center mt-16 sm:mt-24 px-4">
+            <p className="text-[18px] text-[#333333] font-normal font-inter mb-10 max-w-2xl mx-auto leading-relaxed">
+              Not seeing your exact role? If you have exceptional skills in writing, research, design, or operations that don't fit these exact descriptions, we still want to hear from you.
             </p>
             <Button
               asChild
-              className="bg-primary hover:bg-primary/90 text-white rounded-full transition-all shadow-md px-6 sm:px-8 py-4 sm:py-6 hover:scale-105 hover:shadow-primary/30 hover:shadow-xl text-sm sm:text-base"
-              size="lg"
+              className="bg-primary hover:bg-primary/90 text-white rounded-full font-montserrat font-medium text-[16px] px-5 py-5 h-auto tracking-wider shadow-lg hover:scale-105 transition-all"
             >
               <a href="https://docs.google.com/forms/d/e/1FAIpQLSfTDRaGSY7RI5GHtpD1mVS3J7mnxyt7fkmZx_9yW6p8YFU7fg/viewform" target="_blank" rel="noopener noreferrer">
-                Submit General Application
+                SUBMIT GENERAL APPLICATION
               </a>
             </Button>
           </div>

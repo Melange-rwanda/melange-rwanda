@@ -18,9 +18,9 @@ interface JobTableProps {
 }
 
 const typeColors = [
-  'bg-primary/10 text-primary',
+  'bg-primary/10 text-secondary-foreground',
   'bg-secondary/20 text-secondary-foreground',
-  'bg-accent/10 text-accent',
+  'bg-accent/10 text-secondary-foreground',
 ];
 
 /* ─── Job Detail Modal ──────────────────────────────────────────────────── */
@@ -39,8 +39,8 @@ function JobModal({ job, index, onClose }: { job: Job; index: number; onClose: (
         {/* Header */}
         <div className="flex items-start justify-between gap-4">
           <div>
-            <h3 className="text-2xl font-extrabold text-slate-900 leading-tight">{job.title}</h3>
-            <span className={`mt-2 inline-block px-3 py-1 text-xs font-semibold rounded-full ${typeColors[index % 3]}`}>
+            <h3 className="text-2xl font-extrabold font-montserrat text-slate-900 leading-tight">{job.title}</h3>
+            <span className={`mt-2 inline-block px-3 py-1 text-xs font-semibold font-inter rounded-full ${typeColors[index % 3]}`}>
               {job.type}
             </span>
           </div>

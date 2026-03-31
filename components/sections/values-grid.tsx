@@ -10,7 +10,6 @@ import {
   ShieldCheck,
   Unplug,
   Leaf,
-  LucideIcon
 } from 'lucide-react';
 
 interface ValueCard {
@@ -56,23 +55,24 @@ export function ValuesGridSection() {
       id="values"
       className="w-full py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 bg-white relative overflow-hidden"
     >
-    
       <div className="max-w-7xl mx-auto">
+        {/* Section Title - Centered as specified */}
+        <ScrollAnimator variant="fade-up" duration={700}>
+          <h2 className="text-center text-[44px] font-semibold text-[#1A1A1A] tracking-tight font-playfair mb-16 capitalize">
+            Why Join Our Founding Team?
+          </h2>
+        </ScrollAnimator>
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-          
           {/* Left Side - Text Content */}
           <ScrollAnimator variant="fade-right" duration={700}>
             <div>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight uppercase mb-4">
-                Why Join Our Founding Team?
-
-              </h2>
-              <p className="text-base sm:text-lg text-slate-600 leading-relaxed mb-4">
+              <p className="text-base sm:text-lg text-[#333333] font-inter leading-relaxed mb-4">
                 Our mission is to create sustainable, impactful opportunities for exceptional Rwandan talent, 
                 delivering world-class value to our North American clients. We believe lasting impact is achieved 
                 through meaningful work, integrating local expertise with global opportunities.
               </p>
-              <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
+              <p className="text-base sm:text-lg text-[#333333] font-inter leading-relaxed">
                 'Mélange' means a harmonious mixture of diverse elements—Rwandan talent meets global opportunities 
                 and local excellence drives our success.
               </p>
@@ -88,9 +88,9 @@ export function ValuesGridSection() {
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`pb-3 text-lg sm:text-xl font-semibold transition-colors duration-200 ${
+                    className={`pb-3 text-lg sm:text-xl font-semibold transition-colors duration-200 font-montserrat ${
                       activeTab === tab.id
-                        ? 'text-green-600 border-b-2 border-green-600'
+                        ? 'text-primary border-b-2 border-primary'
                         : 'text-slate-500 hover:text-slate-700'
                     }`}
                   >
@@ -100,7 +100,7 @@ export function ValuesGridSection() {
               </div>
             </ScrollAnimator>
 
-            {/* Values Grid - 2x2 layout with icon and title side by side */}
+            {/* Values Grid - 2x2 layout */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
               {tabsData
                 .find((tab) => tab.id === activeTab)
@@ -114,14 +114,14 @@ export function ValuesGridSection() {
                     <div className="group">
                       {/* Icon and Title - side by side */}
                       <div className="flex items-center gap-3 mb-3">
-                        <div className="inline-flex p-2.5 rounded-xl bg-green-100 text-green-600 group-hover:scale-110 transition-transform duration-300">
+                        <div className="inline-flex p-2.5 rounded-xl bg-primary/10 text-primary group-hover:scale-110 transition-transform duration-300">
                           {value.icon}
                         </div>
-                        <h3 className="text-xl sm:text-2xl font-bold text-slate-900 group-hover:text-green-600 transition-colors duration-300">
+                        <h3 className="text-[20px] font-semibold text-[#1A1A1A] font-montserrat group-hover:text-primary transition-colors duration-300">
                           {value.title}
                         </h3>
                       </div>
-                      <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
+                      <p className="text-[16px] text-[#333333] font-inter leading-relaxed">
                         {value.description}
                       </p>
                     </div>
@@ -129,7 +129,6 @@ export function ValuesGridSection() {
                 ))}
             </div>
           </div>
-
         </div>
       </div>
     </section>
