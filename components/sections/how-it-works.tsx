@@ -64,7 +64,7 @@ export function HowItWorksSection({ data }: { data?: any }) {
           {/* Steps Side */}
           <div className="space-y-10 relative">
             {/* Connecting line for mobile/desktop stacked */}
-            <div className="absolute left-[47px] top-10 bottom-10 w-0.5 bg-blue-100 hidden sm:block" />
+            <div className="absolute left-[47px] top-10 bottom-10 w-0.5 bg-primary/20 hidden sm:block" />
 
             {steps.map((step: any, index: number) => {
               const IconComponent = typeof step.icon === 'string' ? iconMap[step.icon] : null;
@@ -77,7 +77,7 @@ export function HowItWorksSection({ data }: { data?: any }) {
                   duration={700}
                 >
                   <div className="relative z-10 flex items-start gap-6 group">
-                    <div className="w-24 h-24 shrink-0 bg-white rounded-2xl shadow-lg border-2 border-blue-100 flex items-center justify-center text-slate-600 transition-all duration-300 group-hover:scale-105 relative">
+                    <div className="w-24 h-24 shrink-0 bg-white rounded-2xl shadow-lg border-2 border-primary/20 flex items-center justify-center text-slate-600 transition-all duration-300 group-hover:scale-105 relative">
                       {IconComponent ? <IconComponent className="w-8 h-8" /> : (step.icon || <Briefcase className="w-8 h-8" />)}
                       <div className="absolute -top-2 -right-2 w-8 h-8 bg-slate-600 text-white rounded-full flex items-center justify-center font-bold text-sm shadow-md border-2 border-white">
                         {step.number}
@@ -106,7 +106,7 @@ export function HowItWorksSection({ data }: { data?: any }) {
                 fill
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-blue-600/10 mix-blend-multiply" />
+              <div className="absolute inset-0 bg-primary/10 mix-blend-multiply" />
               <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent" />
               <div className="absolute bottom-8 left-8 right-8 text-white">
                 <p className="text-xl font-bold mb-2">{calloutTitle}</p>

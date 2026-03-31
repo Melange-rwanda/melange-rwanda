@@ -34,8 +34,8 @@ export default async function Home() {
       <MissionSection data={data.mission} />
       <MelangeDescriptionSection data={data.about} />
       <CurrentOpeningsSection initialJobs={data.jobs} />
-      <ValuesGridSection />
       <ParallaxSection data={data.parallax} />
+      <ValuesGridSection />
       <FounderStorySection data={data.story} />
       <HowItWorksSection data={data.process} />
       <FinalCtaSection />

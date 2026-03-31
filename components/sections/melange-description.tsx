@@ -50,7 +50,7 @@ export function MelangeDescriptionSection({ data }: { data?: any }) {
           <div className="lg:col-span-3 space-y-8">
             <ScrollAnimator variant="fade-left" duration={800} delay={100}>
               <div className="space-y-6">
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-[#009933] tracking-tight">
+                <h3 className="text-2xl sm:text-3xl font-extrabold text-primary tracking-tight">
                   A Mélange, Not a Marketplace
                 </h3>
                 <p className="text-lg sm:text-xl text-slate-600 leading-relaxed font-medium">
