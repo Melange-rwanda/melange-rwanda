@@ -51,7 +51,7 @@ export function HeroSection({ data }: { data?: any }) {
 
         <ScrollAnimator variant="fade-up" duration={800} delay={400} threshold={0}>
           <Button
-            className="bg-primary hover:bg-primary/90 text-white font-montserrat font-medium px-10 sm:px-12 py-7 text-base sm:text-lg tracking-wider rounded-full border-none transition-all shadow-xl hover:scale-105 hover:shadow-2xl"
+            className="bg-primary hover:bg-primary/90 text-white font-montserrat font-medium px-10 sm:px-12 py-5 md:py-7 text-base sm:text-lg tracking-wider rounded-full border-none transition-all shadow-xl hover:scale-105 hover:shadow-2xl"
             onClick={() => {
               const element = document.getElementById('current-openings');
               element?.scrollIntoView({ behavior: 'smooth' });

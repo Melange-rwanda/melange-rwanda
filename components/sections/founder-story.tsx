@@ -9,7 +9,7 @@ export function FounderStorySection({ data }: { data?: any }) {
   const description2 = data?.description2 || "When you join this team, you're not working for a distant company. You're partnering with me as we build something lasting together.";
   const calloutTitle = data?.calloutTitle || 'Sustainable Scaling';
   const calloutText = data?.calloutText || 'Growth is funded by revenue. We build a business that lasts—together.';
-  const imageUrl = data?.image ? urlFor(data.image).url() : '/founder.jpg';
+  const imageUrl = data?.image ? urlFor(data.image).url() : '/founder2.jpg';
 
   return (
     <section
@@ -31,7 +31,7 @@ export function FounderStorySection({ data }: { data?: any }) {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Image Column – left */}
           <ScrollAnimator variant="fade-right" duration={900}>
-            <div className="relative h-[500px] md:h-[600px] w-full max-w-lg mx-auto lg:max-w-none">
+            <div className="relative h-[500px] md:h-[650px] w-full max-w-lg mx-auto lg:max-w-none">
               <div className="absolute inset-0 bg-[#1A7B4B]/20 rounded-3xl transform -rotate-3 scale-105 opacity-50 blur-sm transition-transform hover:-rotate-6" />
               <div className="relative h-full w-full rounded-3xl overflow-hidden border border-slate-100 shadow-xl hover-lift">
                 <Image
@@ -40,7 +40,7 @@ export function FounderStorySection({ data }: { data?: any }) {
                   fill
                   className="object-cover"
                 />
-                <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent flex items-end">
+                <div className="absolute inset-x-0 bottom-0 p-6 bg-linear-to-t from-slate-900/90 via-slate-900/40 to-transparent flex items-end">
                   <p className="text-white font-semibold text-[24px] tracking-wide drop-shadow-md font-montserrat">
                     {name}
                   </p>
