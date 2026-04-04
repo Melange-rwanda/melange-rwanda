@@ -69,7 +69,7 @@ export default async function CurrentOpeningsSection({ initialJobs }: { initialJ
             </p>
             <Button
               asChild
-              className="bg-primary hover:bg-primary/90 text-white rounded-full font-montserrat font-medium text-[16px] px-5 py-5 h-auto tracking-wider shadow-lg hover:scale-105 transition-all"
+              className="bg-primary hover:bg-primary/90 text-white rounded-full font-montserrat font-medium text-[16px] px-5 py-3 h-auto tracking-wider shadow-lg hover:scale-105 transition-all"
             >
               <a href="https://docs.google.com/forms/d/e/1FAIpQLSfTDRaGSY7RI5GHtpD1mVS3J7mnxyt7fkmZx_9yW6p8YFU7fg/viewform" target="_blank" rel="noopener noreferrer">
                 SUBMIT GENERAL APPLICATION

@@ -22,7 +22,7 @@ export function FinalCtaSection() {
 
             <Button
               asChild
-              className="bg-primary hover:bg-primary/90 text-white rounded-full px-5 py-5 h-auto text-[16px] font-montserrat font-medium tracking-wider shadow-2xl transition-all hover:scale-105"
+              className="bg-primary hover:bg-primary/90 text-white rounded-full px-5 py-3 h-auto text-[16px] font-montserrat font-medium tracking-wider shadow-2xl transition-all hover:scale-105"
             >
               <a href="#current-openings">
                 APPLY NOW
