@@ -74,6 +74,7 @@ export function Footer() {
               <div>
                 <h4 className="text-lg font-semibold text-white mb-4">Quick Links</h4>
                 <ul className="space-y-2 text-sm">
+                  
                   {['Current Openings', 'About Us', 'Community', 'Contact'].map((link, i) => (
                     <li key={i}>
                       <a
@@ -84,6 +85,8 @@ export function Footer() {
                       </a>
                     </li>
                   ))}
+                  <li><a target="_blank" href={`${process.env.NEXT_PUBLIC_SITEURL}/studio`} className="hover:text-white hover:pl-1 transition-all duration-200"
+                     >Sanity Studio</a></li>
                 </ul>
               </div>
             </ScrollAnimator>

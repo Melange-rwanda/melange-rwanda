@@ -62,7 +62,7 @@
         },
         "name": "image",
         "type": "image",
-        "title": "Background Image"
+        "title": "Mission Image"
       }
     ],
     "name": "mission",
@@ -118,15 +118,19 @@
         "title": "Main Title"
       },
       {
+        "name": "description1",
+        "type": "text",
+        "title": "Description Paragraph 1"
+      },
+      {
+        "name": "description2",
+        "type": "text",
+        "title": "Description Paragraph 2"
+      },
+      {
         "of": [
           {
             "fields": [
-              {
-                "description": "Use a Lucide Icon name (e.g., Calendar, TrendingUp, Handshake, Gem, BookOpen, ShieldCheck, Unplug, Leaf)",
-                "name": "icon",
-                "type": "string",
-                "title": "Icon Name"
-              },
               {
                 "name": "title",
                 "type": "string",
