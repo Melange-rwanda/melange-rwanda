@@ -90,7 +90,7 @@ export function ValuesGridSection({ data }: ValuesGridProps) {
                       {/* Header: Black Left Triangle and Title */}
                       <div className="flex items-start">
                         {/* Black left triangle icon */}
-                        <div className="flex-shrink-0 mt-1 mr-3">
+                        <div className="shrink-0 mt-1 mr-3">
                           <svg
                             width="12"
                             height="12"
