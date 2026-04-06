@@ -21,7 +21,7 @@ export function MelangeDescriptionSection({ data }: { data?: any }) {
         <div className="bg-primary p-8 md:p-12 lg:p-16">
           <div className="text-center mb-16 sm:mb-20">
             <ScrollAnimator variant="fade-down" duration={700}>
-              <h2 className="text-3xl sm:text-4xl md:text-[44px] font-semibold text-white tracking-tight font-playfair">
+              <h2 className="text-3xl sm:text-4xl md:text-[44px] font-semibold text-slate-800 tracking-tight font-playfair">
                 {title}
               </h2>
             </ScrollAnimator>
@@ -47,7 +47,7 @@ export function MelangeDescriptionSection({ data }: { data?: any }) {
             <div className="lg:col-span-3 space-y-8">
               <ScrollAnimator variant="fade-left" duration={800} delay={100}>
                 <div className="space-y-4">
-                  <h3 className="text-xl sm:text-2xl font-semibold text-white tracking-tight font-montserrat">
+                  <h3 className="text-xl sm:text-2xl font-semibold text-slate-800 tracking-tight font-montserrat">
                     {card1Title}
                   </h3>
                   <p className="text-[18px] text-white font-normal font-inter leading-relaxed">
@@ -58,7 +58,7 @@ export function MelangeDescriptionSection({ data }: { data?: any }) {
 
               <ScrollAnimator variant="fade-left" duration={800} delay={250}>
                 <div className="space-y-4">
-                  <h3 className="text-xl sm:text-2xl font-semibold text-white tracking-tight font-montserrat">
+                  <h3 className="text-xl sm:text-2xl font-semibold text-slate-800 tracking-tight font-montserrat">
                     {card2Title}
                   </h3>
                   <p className="text-[18px] text-white font-normal font-inter leading-relaxed">
