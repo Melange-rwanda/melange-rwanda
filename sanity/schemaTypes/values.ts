@@ -4,6 +4,8 @@ export default {
     type: 'document',
     fields: [
         { name: 'title', title: 'Main Title', type: 'string' },
+        { name: 'description1', title: 'Description Paragraph 1', type: 'text' },
+        { name: 'description2', title: 'Description Paragraph 2', type: 'text' },
         {
             name: 'cards',
             title: 'Value Cards',
@@ -12,12 +14,6 @@ export default {
                 {
                     type: 'object',
                     fields: [
-                        {
-                            name: 'icon',
-                            title: 'Icon Name',
-                            type: 'string',
-                            description: 'Use a Lucide Icon name (e.g., Calendar, TrendingUp, Handshake, Gem, BookOpen, ShieldCheck, Unplug, Leaf)'
-                        },
                         { name: 'title', title: 'Card Title', type: 'string' },
                         { name: 'description', title: 'Card Description', type: 'text' },
                     ]
