@@ -1,0 +1,9 @@
+# Robots.txt for Mélange Rwanda
+# https://www.melangerwanda.com
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://www.melangerwanda.com/sitemap.xml
+
