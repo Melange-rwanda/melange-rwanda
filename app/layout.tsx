@@ -20,14 +20,43 @@ const montserrat = Montserrat({
 
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITEURL || 'https://www.melangerwanda.com';
+
 export const metadata: Metadata = {
   title: 'Mélange Rwanda - Join Rwanda\'s Elite',
-  description: 'Mélange Rwanda is a non-profit organization dedicated to empowering youth through quality education, skills development, and community-driven initiatives.',
+  description: 'Mélange Rwanda is a non-profit organization dedicated to empowering youth through job opportunities, quality education, skills development, and community-driven initiatives.Join Rwanda\'s elite. Become a founding freelance partner providing world-class services to North American clients. Multiple positions available',
   keywords: 'melange rwanda, Rwanda, education, youth empowerment, non-profit, skills development',
+  icons: {
+    icon: [
+      { url: '/logo2.png', sizes: 'any' } 
+    ],
+    apple: [
+      { url: '/logo2.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
   openGraph: {
     title: 'Mélange Rwanda - Join Rwanda\'s Elite',
-    description: 'Empowering Rwanda\'s youth through education and opportunity',
+    description: 'Join Rwanda\'s elite. Become a founding freelance partner and provide world-class services to North American clients.',
     type: 'website',
+    url: siteUrl,
+    siteName: 'Mélange Rwanda',
+    images: [
+      {
+        url: `${siteUrl}/logo2.png`,
+        width: 1200,
+        height: 630,
+        alt: 'Mélange Rwanda - Join Rwanda\'s Elite',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Mélange Rwanda - Join Rwanda\'s Elite',
+    description: 'Join Rwanda\'s elite. Become a founding freelance partner and provide world-class services to North American clients.',
+    images: [`${siteUrl}/logo2.png`],
+  },
+  verification: {
+    google: 'vB2RuXjznm_ewaniDm-AUBQ6Sx2nW-ZESRBhokT4O0E',
   },
 }
 
@@ -45,6 +74,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
+      <head />
       <body className={`${inter.variable} ${playfair.variable} ${montserrat.variable} font-sans antialiased bg-background text-foreground overflow-x-hidden`}>
         {children}
         <Analytics />
