@@ -24,8 +24,8 @@ const siteUrl = process.env.NEXT_PUBLIC_SITEURL || 'https://www.melangerwanda.co
 
 export const metadata: Metadata = {
   title: 'Mélange Rwanda - Join Rwanda\'s Elite',
-  description: 'Mélange Rwanda is a non-profit organization dedicated to empowering youth through job opportunities, quality education, skills development, and community-driven initiatives.Join Rwanda\'s elite. Become a founding freelance partner providing world-class services to North American clients. Multiple positions available',
-  keywords: 'melange rwanda, Rwanda, education, youth empowerment, non-profit, skills development',
+  description: 'Mélange Rwanda is hiring top Rwandan freelancers. Remote roles in writing, research, design & operations. Join our founding team. Apply now.',
+  keywords: 'mélange rwanda,melange rwanda,melangerwanda, rwanda jobs, youth empowerment rwanda, mélange freelance rwanda, rwanda education, skills development rwanda, rwanda freelance opportunities, join rwanda elite, work from home rwanda, mélange youth programs, community initiatives rwanda, rwanda career opportunities, freelance partners rwanda, north american clients rwanda,north american job, mélange digital jobs, remote work rwanda, rwanda talent, youth skills training, mélange employment',
   icons: {
     icon: [
       { url: '/logo2.png', sizes: 'any' } 
