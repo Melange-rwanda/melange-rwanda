@@ -25,7 +25,8 @@ export default async function Home() {
     "parallax": *[_type == "parallax"][0],
     "values": *[_type == "values"][0],
     "jobs": *[_type == "job"],
-    "faqs": *[_type == "faq"]
+    "faqs": *[_type == "faq"],
+    "generalApplication": *[_type == "generalApplication"][0]
   }`;
 
   const data = await client.fetch(query);
@@ -36,7 +37,7 @@ export default async function Home() {
       <HeroSection data={data.hero} />
       <MissionSection data={data.mission} />
       <MelangeDescriptionSection data={data.about} />
-      <CurrentOpeningsSection initialJobs={data.jobs} />
+      <CurrentOpeningsSection initialJobs={data.jobs} generalApplication={data.generalApplication} />
       <ParallaxSection data={data.parallax} />
       <ValuesGridSection data={data.values} />
       <FounderStorySection data={data.story} />

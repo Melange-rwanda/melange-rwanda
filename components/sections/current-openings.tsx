@@ -5,7 +5,13 @@ import { Button } from '@/components/ui/button';
 import { client } from '@/sanity/lib/client';
 import Image from 'next/image';
 
-export default async function CurrentOpeningsSection({ initialJobs }: { initialJobs?: Job[] }) {
+export default async function CurrentOpeningsSection({
+  initialJobs,
+  generalApplication
+}: {
+  initialJobs?: Job[],
+  generalApplication?: { link?: string; description?: string }
+}) {
   let jobs: Job[] = initialJobs || [];
   let error: string | null = null;
 
@@ -64,14 +70,14 @@ export default async function CurrentOpeningsSection({ initialJobs }: { initialJ
         {/* CTA – slides up */}
         <ScrollAnimator variant="fade-up" duration={700} delay={200}>
           <div className="text-center mt-16 sm:mt-24 px-4">
-            <p className="text-[18px] text-[#333333] font-normal font-inter mb-10 max-w-2xl mx-auto leading-relaxed">
-              Not seeing your exact role? If you have exceptional skills in writing, research, design, or operations that don't fit these exact descriptions, we still want to hear from you.
+            <p className="text-[18px] text-[#333333] font-normal font-inter mb-10 max-w-2xl mx-auto leading-relaxed whitespace-pre-wrap">
+              {generalApplication?.description || "Not seeing your exact role? If you have exceptional skills in writing, research, design, or operations that don't fit these exact descriptions, we still want to hear from you."}
             </p>
             <Button
               asChild
               className="bg-primary hover:bg-primary/90 text-white rounded-full font-montserrat font-medium text-[16px] px-5 py-3 h-auto tracking-wider shadow-lg hover:scale-105 transition-all"
             >
-              <a href="https://docs.google.com/forms/d/e/1FAIpQLSfTDRaGSY7RI5GHtpD1mVS3J7mnxyt7fkmZx_9yW6p8YFU7fg/viewform" target="_blank" rel="noopener noreferrer">
+              <a href={generalApplication?.link || "/"} target="_blank" rel="noopener noreferrer">
                 SUBMIT GENERAL APPLICATION
               </a>
             </Button>
