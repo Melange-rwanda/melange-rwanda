@@ -7,7 +7,8 @@ import story from './story'
 import process from './process'
 import hero from './hero'
 import parallax from './parallax'
+import faq from './faq'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [job, mission, about, values, story, process, hero, parallax],
+  types: [job, mission, about, values, story, process, hero, parallax, faq],
 }

@@ -11,7 +11,7 @@ export default async function CurrentOpeningsSection({ initialJobs }: { initialJ
 
   if (!initialJobs) {
     try {
-      const query = `*[_type == "job"]{ title, department, location, type, link }`;
+      const query = `*[_type == "job"]{ title, company, location, type, link, roleDescription }`;
       jobs = await client.fetch(query);
     } catch (err) {
       console.error('Error fetching jobs:', err);
@@ -42,7 +42,7 @@ export default async function CurrentOpeningsSection({ initialJobs }: { initialJ
             </ScrollAnimator>
             <ScrollAnimator variant="fade-up" duration={600} delay={350}>
               <p className="text-base sm:text-lg lg:text-xl text-white/90 max-w-2xl font-inter font-normal drop-shadow-md">
-              We're assembling an exceptional team of freelancers for exciting projects. Click below for the full job details. </p>
+                We're assembling an exceptional team of freelancers for exciting projects. Click below for the full job details. </p>
             </ScrollAnimator>
           </div>
         </div>

@@ -10,6 +10,7 @@ import { Footer } from '@/components/sections/footer';
 import CurrentOpeningsSection from '@/components/sections/current-openings';
 import { client } from '@/sanity/lib/client';
 import { ParallaxSection } from '@/components/sections/parallax';
+import { FaqsSection } from '@/components/sections/faqs';
 
 export default async function Home() {
   const query = `{
@@ -23,7 +24,8 @@ export default async function Home() {
     "process": *[_type == "process"][0],
     "parallax": *[_type == "parallax"][0],
     "values": *[_type == "values"][0],
-    "jobs": *[_type == "job"]
+    "jobs": *[_type == "job"],
+    "faqs": *[_type == "faq"]
   }`;
 
   const data = await client.fetch(query);
@@ -39,6 +41,7 @@ export default async function Home() {
       <ValuesGridSection data={data.values} />
       <FounderStorySection data={data.story} />
       <HowItWorksSection data={data.process} />
+      <FaqsSection faqs={data.faqs} />
       <FinalCtaSection />
       <Footer />
     </main>

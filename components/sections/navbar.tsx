@@ -14,6 +14,7 @@ const NAV_LINKS = [
     { name: 'Values', href: '#values' },
     { name: 'Story', href: '#story' },
     { name: 'Process', href: '#how-it-works' },
+    { name: 'FAQs', href: '#faqs' },
 ];
 
 export function Navbar() {
@@ -50,9 +51,8 @@ export function Navbar() {
 
     return (
         <header
-            className={`fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md transition-all duration-300 ${
-                scrolled ? 'py-2 shadow-lg border-b border-primary/10' : 'py-3 shadow-md border-b border-primary/5'
-            }`}
+            className={`fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md transition-all duration-300 ${scrolled ? 'py-2 shadow-lg border-b border-primary/10' : 'py-3 shadow-md border-b border-primary/5'
+                }`}
         >
             <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20">
                 <div className="flex items-center justify-between">
@@ -104,9 +104,8 @@ export function Navbar() {
                     <div className="hidden md:flex items-center">
                         <ScrollAnimator variant="fade" delay={400} duration={600} threshold={0} once={true}>
                             <Button
-                                className={`rounded-full font-montserrat font-semibold bg-primary hover:bg-primary/90 text-white shadow-lg transition-all hover:scale-105 hover:shadow-primary/30 hover:shadow-xl whitespace-nowrap ${
-                                    scrolled ? 'px-4 md:px-5 lg:px-6 py-2 text-xs md:text-sm lg:text-base' : 'px-5 md:px-6 lg:px-7 py-2.5 text-sm md:text-base'
-                                }`}
+                                className={`rounded-full font-montserrat font-semibold bg-primary hover:bg-primary/90 text-white shadow-lg transition-all hover:scale-105 hover:shadow-primary/30 hover:shadow-xl whitespace-nowrap ${scrolled ? 'px-4 md:px-5 lg:px-6 py-2 text-xs md:text-sm lg:text-base' : 'px-5 md:px-6 lg:px-7 py-2.5 text-sm md:text-base'
+                                    }`}
                                 onClick={() => {
                                     document
                                         .getElementById('current-openings')
@@ -138,11 +137,10 @@ export function Navbar() {
 
             {/* Mobile & Tablet Menu - Responsive dropdown */}
             <div
-                className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-                    mobileMenuOpen
+                className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${mobileMenuOpen
                         ? 'max-h-[600px] opacity-100'
                         : 'max-h-0 opacity-0 pointer-events-none'
-                }`}
+                    }`}
             >
                 <div className="absolute top-full left-0 right-0 bg-white/98 backdrop-blur-md border-b border-primary/10 shadow-xl z-50">
                     <div className="px-4 sm:px-6 md:px-8 pt-2 pb-6 space-y-1">
