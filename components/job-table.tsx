@@ -1,7 +1,8 @@
 // components/job-table.tsx
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
+import ReactDOM from 'react-dom';
 import { Button } from '@/components/ui/button';
 import { ExternalLink, X, MapPin, Building2, Briefcase, ArrowUpRight, Search, FileText } from 'lucide-react';
 import { Input } from '@/components/ui/input';
@@ -28,8 +29,10 @@ const typeColors = [
 
 /* ─── Job Detail Modal ──────────────────────────────────────────────────── */
 function JobModal({ job, index, onClose }: { job: Job; index: number; onClose: () => void }) {
-  // Prevent body scroll when modal is open
-  React.useEffect(() => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
     const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
     document.body.style.overflow = 'hidden';
     document.body.style.paddingRight = `${scrollbarWidth}px`;
@@ -40,10 +43,12 @@ function JobModal({ job, index, onClose }: { job: Job; index: number; onClose: (
     };
   }, []);
 
-  return (
+  if (!mounted) return null;
+
+  const modalContent = (
     /* Backdrop - Fixed, centered positioning */
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-fade-in"
+      className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-fade-in"
       onClick={onClose}
     >
       {/* Panel */}
@@ -110,6 +115,9 @@ function JobModal({ job, index, onClose }: { job: Job; index: number; onClose: (
       </div>
     </div>
   );
+
+  // Render modal as a portal outside the table
+  return typeof document !== 'undefined' ? ReactDOM.createPortal(modalContent, document.body) : null;
 }
 
 /* ─── Job Table ─────────────────────────────────────────────────────────── */

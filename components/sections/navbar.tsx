@@ -30,7 +30,7 @@ export function Navbar() {
     // Close mobile menu on window resize (if screen becomes desktop)
     useEffect(() => {
         const handleResize = () => {
-            if (window.innerWidth >= 768 && mobileMenuOpen) {
+            if (window.innerWidth >= 1024 && mobileMenuOpen) {
                 setMobileMenuOpen(false);
             }
         };
@@ -77,7 +77,7 @@ export function Navbar() {
                         </ScrollAnimator>
                     </div>
 
-                    {/* Desktop Navigation - Hidden on tablet, visible on desktop */}
+                    {/* Desktop Navigation - Only visible on lg (1024px) and above */}
                     <nav className="hidden lg:flex items-center gap-4 xl:gap-6 2xl:gap-8">
                         {NAV_LINKS.map((link, i) => (
                             <ScrollAnimator
@@ -100,8 +100,8 @@ export function Navbar() {
                         ))}
                     </nav>
 
-                    {/* Desktop Button - Visible on tablet and desktop */}
-                    <div className="hidden md:flex items-center">
+                    {/* Desktop Button - Only visible on lg (1024px) and above */}
+                    <div className="hidden lg:flex items-center">
                         <ScrollAnimator variant="fade" delay={400} duration={600} threshold={0} once={true}>
                             <Button
                                 className={`rounded-full font-montserrat font-semibold bg-primary hover:bg-primary/90 text-white shadow-lg transition-all hover:scale-105 hover:shadow-primary/30 hover:shadow-xl whitespace-nowrap ${scrolled ? 'px-4 md:px-5 lg:px-6 py-2 text-xs md:text-sm lg:text-base' : 'px-5 md:px-6 lg:px-7 py-2.5 text-sm md:text-base'
@@ -117,7 +117,7 @@ export function Navbar() {
                         </ScrollAnimator>
                     </div>
 
-                    {/* Mobile & Tablet Toggle - Visible on mobile and tablet (md and below) */}
+                    {/* Mobile & Tablet Toggle - Only visible below lg (under 1024px) */}
                     <div className="lg:hidden flex items-center">
                         <button
                             type="button"
@@ -135,7 +135,7 @@ export function Navbar() {
                 </div>
             </div>
 
-            {/* Mobile & Tablet Menu - Responsive dropdown */}
+            {/* Mobile & Tablet Menu - Only visible below lg (under 1024px) */}
             <div
                 className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${mobileMenuOpen
                         ? 'max-h-[600px] opacity-100'
@@ -149,7 +149,7 @@ export function Navbar() {
                                 key={link.name}
                                 href={link.href}
                                 onClick={(e) => scrollToSection(e, link.href)}
-                                className="flex items-center justify-between px-3 py-4 sm:py-5 text-base sm:text-lg font-medium text-[#333333] hover:text-[#primary] hover:bg-[#primary]/5 rounded-xl transition-all"
+                                className="flex items-center justify-between px-3 py-4 sm:py-5 text-base sm:text-lg font-medium text-[#333333] hover:text-primary hover:bg-primary/5 rounded-xl transition-all"
                                 style={{ animationDelay: `${i * 50}ms` }}
                             >
                                 {link.name}
