@@ -26,7 +26,9 @@ export default async function Home() {
     "values": *[_type == "values"][0],
     "jobs": *[_type == "job"],
     "faqs": *[_type == "faq"],
-    "generalApplication": *[_type == "generalApplication"][0]
+    "generalApplication": *[_type == "generalApplication"][0],
+    "footer": *[_type == "footer"][0],
+    "howItWorks": *[_type == "howItWorks"][0]
   }`;
 
   const data = await client.fetch(query);
@@ -41,10 +43,10 @@ export default async function Home() {
       <ParallaxSection data={data.parallax} />
       <ValuesGridSection data={data.values} />
       <FounderStorySection data={data.story} />
-      <HowItWorksSection data={data.process} />
+      <HowItWorksSection data={data.howItWorks || data.process} />
       <FaqsSection faqs={data.faqs} />
       <FinalCtaSection />
-      <Footer />
+      <Footer data={data.footer} />
     </main>
   );
 }

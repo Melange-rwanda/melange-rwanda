@@ -15,6 +15,19 @@ export interface Faq {
 export function FaqsSection({ faqs }: { faqs?: Faq[] }) {
     if (!faqs || faqs.length === 0) return null;
 
+    // Sort FAQs by extracting the number from "Q1", "Q2", "Q10", etc.
+    const sortedFaqs = [...faqs].sort((a, b) => {
+        const extractNumber = (question: string) => {
+            const match = question.match(/Q(\d+)/i);
+            return match ? parseInt(match[1], 10) : Infinity;
+        };
+        
+        const numA = extractNumber(a.question);
+        const numB = extractNumber(b.question);
+        
+        return numA - numB;
+    });
+
     return (
         <section id="faqs" className="w-full bg-slate-50 py-16 sm:py-24">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -31,7 +44,7 @@ export function FaqsSection({ faqs }: { faqs?: Faq[] }) {
 
                 <ScrollAnimator variant="slide-up" duration={700} delay={200}>
                     <Accordion type="single" collapsible className="w-full bg-white rounded-2xl shadow-sm border border-slate-100 px-6 sm:px-8 py-4">
-                        {faqs.map((faq, index) => (
+                        {sortedFaqs.map((faq, index) => (
                             <AccordionItem key={faq._id || index} value={`item-${index}`} className="border-b-slate-100 last:border-0 py-2">
                                 <AccordionTrigger className="text-left font-bold text-slate-900 transition-colors text-base sm:text-lg">
                                     {faq.question}

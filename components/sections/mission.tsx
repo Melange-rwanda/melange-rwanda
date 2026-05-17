@@ -3,8 +3,8 @@ import Image from 'next/image';
 import { urlFor } from '@/sanity/lib/image';
 
 export function MissionSection({ data }: { data?: any }) {
-  const title = 'Our mission';
-  const description = 'Our mission is to create sustainable, high-impact opportunities for exceptional Rwandan talent while delivering world-class value to North American clients. We believe the most powerful way to create lasting  through meaningful work—blending local excellence with global opportunity.';
+  const title = data?.title || 'Our mission';
+  const description = data?.description || 'Our mission is to create sustainable, high-impact opportunities for exceptional Rwandan talent while delivering world-class value to North American clients. We believe the most powerful way to create lasting  through meaningful work—blending local excellence with global opportunity.';
   const imageUrl = data?.image ? urlFor(data.image).url() : '/graduate.jpg';
 
   return (

@@ -5,10 +5,10 @@ import { Button } from '@/components/ui/button';
 import { ChevronDown } from 'lucide-react';
 
 export function HeroSection({ data }: { data?: any }) {
-  const title = "THIS IS MÉLANGE. JOIN RWANDA'S ELITE.";
-  const subtitle = "Become a founding freelance partner and provide world-class services to North American clients. Multiple positions available.";
+  const title = data?.title || "THIS IS MÉLANGE. JOIN RWANDA'S ELITE.";
+  const subtitle = data?.subtitle || "Become a founding freelance partner and provide world-class services to North American clients. Multiple positions available.";
   const videoUrl = data?.videoUrl || "/rwanda.mp4";
-  const buttonText = "VIEW OPENINGS →";
+  const buttonText = data?.buttonText || "VIEW OPENINGS →";
 
   // African pattern images array
   const africanPatterns = [

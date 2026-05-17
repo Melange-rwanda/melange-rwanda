@@ -1,14 +1,26 @@
 import { Mail, MapPin, Phone, Linkedin, Twitter, Facebook } from 'lucide-react';
 import { ScrollAnimator } from '@/components/scroll-animator';
 
-export function Footer() {
+export function Footer({ data }: { data?: any }) {
+  const companyTitle = data?.companyTitle || 'Mélange Rwanda';
+  const companyDescription = data?.companyDescription || "Empowering Rwanda's youth through quality education, skills development, and meaningful career opportunities.";
+  const location = data?.contactInfo?.location || 'Kigali, Rwanda';
+  const email = data?.contactInfo?.email || 'hello@melangerwanda.org';
+  const phone = data?.contactInfo?.phone || '+250 (0) 788 123 456';
+
+  const socialLinks = [
+    { href: data?.socialLinks?.linkedin || 'https://linkedin.com', Icon: Linkedin, label: 'LinkedIn' },
+    { href: data?.socialLinks?.twitter || 'https://twitter.com', Icon: Twitter, label: 'Twitter' },
+    { href: data?.socialLinks?.facebook || 'https://facebook.com', Icon: Facebook, label: 'Facebook' },
+  ];
+
   return (
     <footer className="w-full bg-[#0a2540] text-slate-300 relative overflow-hidden pt-1">
       {/* Rwandan Flag top bar – 3 side-by-side bands */}
       <div className="absolute top-0 left-0 w-full h-[4px] flex">
-        <div className="flex-[5] bg-primary" />
-        <div className="flex-[1] bg-secondary" />
-        <div className="flex-[5] bg-accent" />
+        <div className="flex-5 bg-primary" />
+        <div className="flex-1 bg-secondary" />
+        <div className="flex-5 bg-accent" />
       </div>
 
       <div className="px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
@@ -18,17 +30,12 @@ export function Footer() {
             {/* Company Info */}
             <ScrollAnimator variant="fade-right" duration={700}>
               <div>
-                <h3 className="text-xl font-bold text-white mb-4">Mélange Rwanda</h3>
+                <h3 className="text-xl font-bold text-white mb-4">{companyTitle}</h3>
                 <p className="text-sm leading-relaxed mb-4">
-                  Empowering Rwanda&rsquo;s youth through quality education, skills development, and
-                  meaningful career opportunities.
+                  {companyDescription}
                 </p>
                 <div className="flex gap-3">
-                  {[
-                    { href: 'https://linkedin.com', Icon: Linkedin, label: 'LinkedIn' },
-                    { href: 'https://twitter.com', Icon: Twitter, label: 'Twitter' },
-                    { href: 'https://facebook.com', Icon: Facebook, label: 'Facebook' },
-                  ].map(({ href, Icon, label }) => (
+                  {socialLinks.map(({ href, Icon, label }) => (
                     <a
                       key={label}
                       href={href}
@@ -51,18 +58,18 @@ export function Footer() {
                 <ul className="space-y-3 text-sm">
                   <li className="flex gap-3">
                     <MapPin className="w-5 h-5 flex-shrink-0 text-primary" />
-                    <span>Kigali, Rwanda</span>
+                    <span>{location}</span>
                   </li>
                   <li className="flex gap-3">
                     <Mail className="w-5 h-5 flex-shrink-0 text-primary" />
-                    <a href="mailto:hello@melangerwanda.org" className="hover:text-white transition-colors">
-                      hello@melangerwanda.org
+                    <a href={`mailto:${email}`} className="hover:text-white transition-colors">
+                      {email}
                     </a>
                   </li>
                   <li className="flex gap-3">
                     <Phone className="w-5 h-5 flex-shrink-0 text-primary" />
-                    <a href="tel:+250788123456" className="hover:text-white transition-colors">
-                      +250 (0) 788 123 456
+                    <a href={`tel:${phone.replace(/[^0-9+]/g, '')}`} className="hover:text-white transition-colors">
+                      {phone}
                     </a>
                   </li>
                 </ul>
@@ -74,7 +81,7 @@ export function Footer() {
               <div>
                 <h4 className="text-lg font-semibold text-white mb-4">Quick Links</h4>
                 <ul className="space-y-2 text-sm">
-                  
+
                   {['Current Openings', 'About Us', 'Community', 'Contact'].map((link, i) => (
                     <li key={i}>
                       <a
@@ -86,7 +93,7 @@ export function Footer() {
                     </li>
                   ))}
                   <li><a target="_blank" href={`${process.env.NEXT_PUBLIC_SITEURL}/studio`} className="hover:text-white hover:pl-1 transition-all duration-200"
-                     >Sanity Studio</a></li>
+                  >Sanity Studio</a></li>
                 </ul>
               </div>
             </ScrollAnimator>
