@@ -43,7 +43,7 @@ export default async function CurrentOpeningsSection({
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
             <ScrollAnimator variant="fade-down" duration={700} delay={200}>
               <h2 className="text-3xl sm:text-4xl md:text-[44px] font-semibold mb-4 text-white drop-shadow-md font-playfair tracking-tight">
-                Now hiring: founding team
+                Now Accepting Application
               </h2>
             </ScrollAnimator>
             <ScrollAnimator variant="fade-up" duration={600} delay={350}>

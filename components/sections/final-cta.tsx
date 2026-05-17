@@ -17,7 +17,7 @@ export function FinalCtaSection() {
             </h2>
 
             <p className="text-[20px] text-[#333333] mb-12 max-w-2xl mx-auto leading-relaxed font-inter font-normal">
-              Apply now and become a founding partner at Mélange Rwanda.
+              Apply now to work with global clients
             </p>
 
             <Button
