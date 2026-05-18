@@ -8,7 +8,7 @@ export function HeroSection({ data }: { data?: any }) {
   const title = data?.title || "THIS IS MÉLANGE. JOIN RWANDA'S ELITE.";
   const subtitle = data?.subtitle || "Become a founding freelance partner and provide world-class services to North American clients. Multiple positions available.";
   const videoUrl = data?.videoUrl || "/rwanda.mp4";
-  const buttonText = data?.buttonText || "VIEW OPENINGS →";
+  const buttonText = data?.buttonText || "VIEW OPEN POSITIONS";
 
   // African pattern images array
   const africanPatterns = [

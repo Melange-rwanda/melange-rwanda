@@ -6,13 +6,16 @@ export function Footer({ data }: { data?: any }) {
   const companyDescription = data?.companyDescription || "Empowering Rwanda's youth through quality education, skills development, and meaningful career opportunities.";
   const location = data?.contactInfo?.location || 'Kigali, Rwanda';
   const email = data?.contactInfo?.email || 'hello@melangerwanda.org';
-  const phone = data?.contactInfo?.phone || '+250 (0) 788 123 456';
+  const phone = data?.contactInfo?.phone || '+250 (0) 792 9488 848/ +250 (0) 727 666 338';
 
   const socialLinks = [
     { href: data?.socialLinks?.linkedin || 'https://linkedin.com', Icon: Linkedin, label: 'LinkedIn' },
     { href: data?.socialLinks?.twitter || 'https://twitter.com', Icon: Twitter, label: 'Twitter' },
     { href: data?.socialLinks?.facebook || 'https://facebook.com', Icon: Facebook, label: 'Facebook' },
   ];
+
+  // Split phone numbers for display
+  const phoneNumbers = phone.split('/').map(num => num.trim());
 
   return (
     <footer className="w-full bg-[#0a2540] text-slate-300 relative overflow-hidden pt-1">
@@ -57,20 +60,28 @@ export function Footer({ data }: { data?: any }) {
                 <h4 className="text-lg font-semibold text-white mb-4">Contact Us</h4>
                 <ul className="space-y-3 text-sm">
                   <li className="flex gap-3">
-                    <MapPin className="w-5 h-5 flex-shrink-0 text-primary" />
+                    <MapPin className="w-5 h-5 shrink-0 text-primary" />
                     <span>{location}</span>
                   </li>
                   <li className="flex gap-3">
-                    <Mail className="w-5 h-5 flex-shrink-0 text-primary" />
+                    <Mail className="w-5 h-5 shrink-0 text-primary" />
                     <a href={`mailto:${email}`} className="hover:text-white transition-colors">
                       {email}
                     </a>
                   </li>
-                  <li className="flex gap-3">
-                    <Phone className="w-5 h-5 flex-shrink-0 text-primary" />
-                    <a href={`tel:${phone.replace(/[^0-9+]/g, '')}`} className="hover:text-white transition-colors">
-                      {phone}
-                    </a>
+                  {/* Phone numbers as separate rows */}
+                  <li className="flex flex-col gap-2">
+                    <div className="flex gap-3">
+                      <Phone className="w-5 h-5 shrink-0 text-primary" />
+                      <a href={`tel:${phoneNumbers[0].replace(/[^0-9+]/g, '')}`} className="hover:text-white transition-colors">
+                        {phoneNumbers[0]}
+                      </a>
+                    </div>
+                    <div className="flex gap-3 ml-8">
+                      <a href={`tel:${phoneNumbers[1].replace(/[^0-9+]/g, '')}`} className="hover:text-white transition-colors">
+                        {phoneNumbers[1]}
+                      </a>
+                    </div>
                   </li>
                 </ul>
               </div>
