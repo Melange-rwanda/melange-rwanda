@@ -33,8 +33,20 @@ export default {
                     initialValue: 'hello@melangerwanda.org',
                 },
                 {
-                    name: 'phone',
-                    title: 'Phone Number',
+                    name: 'phone1',
+                    title: 'Phone Number 1',
+                    type: 'string',
+                    initialValue: '+250 (0) 792 9488 848',
+                },
+                {
+                    name: 'phone2',
+                    title: 'Phone Number 2',
+                    type: 'string',
+                    initialValue: '+250 (0) 727 666 338',
+                },
+                {
+                    name: 'whatsapp',
+                    title: 'WhatsApp Number',
                     type: 'string',
                     initialValue: '+250 (0) 788 123 456',
                 },

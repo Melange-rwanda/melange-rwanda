@@ -1,4 +1,4 @@
-import { Mail, MapPin, Phone, Linkedin, Twitter, Facebook } from 'lucide-react';
+import { Mail, MapPin, Phone, Linkedin, Twitter, Facebook, MessageCircle } from 'lucide-react';
 import { ScrollAnimator } from '@/components/scroll-animator';
 
 export function Footer({ data }: { data?: any }) {
@@ -6,7 +6,9 @@ export function Footer({ data }: { data?: any }) {
   const companyDescription = data?.companyDescription || "Empowering Rwanda's youth through quality education, skills development, and meaningful career opportunities.";
   const location = data?.contactInfo?.location || 'Kigali, Rwanda';
   const email = data?.contactInfo?.email || 'hello@melangerwanda.org';
-  const phone = data?.contactInfo?.phone || '+250 (0) 792 9488 848/ +250 (0) 727 666 338';
+  const phone2 = data?.contactInfo?.phone2 || '+250 (0) 727 666 338';
+  const phone1 = data?.contactInfo?.phone1 || '+250 (0) 792 948 848';
+  const whatsapp = data?.contactInfo?.whatsapp || '+250 (0) 788 123 456';
 
   const socialLinks = [
     { href: data?.socialLinks?.linkedin || 'https://linkedin.com', Icon: Linkedin, label: 'LinkedIn' },
@@ -14,8 +16,18 @@ export function Footer({ data }: { data?: any }) {
     { href: data?.socialLinks?.facebook || 'https://facebook.com', Icon: Facebook, label: 'Facebook' },
   ];
 
-  // Split phone numbers for display
-  const phoneNumbers = phone.split('/').map(num => num.trim());
+  // Quick links as an array with proper anchors
+  const quickLinks = [
+    { name: 'Home', href: '#home' },
+    { name: 'About Us', href: '#about' },
+    { name: 'Mission', href: '#mission' },
+    { name: 'Current Openings', href: '#current-openings' },
+  ];
+
+  // Helper function to clean phone numbers for tel: links
+  const cleanPhoneNumber = (phone: string) => {
+    return phone.replace(/[^0-9+]/g, '');
+  };
 
   return (
     <footer className="w-full bg-[#0a2540] text-slate-300 relative overflow-hidden pt-1">
@@ -69,19 +81,31 @@ export function Footer({ data }: { data?: any }) {
                       {email}
                     </a>
                   </li>
-                  {/* Phone numbers as separate rows */}
-                  <li className="flex flex-col gap-2">
-                    <div className="flex gap-3">
-                      <Phone className="w-5 h-5 shrink-0 text-primary" />
-                      <a href={`tel:${phoneNumbers[0].replace(/[^0-9+]/g, '')}`} className="hover:text-white transition-colors">
-                        {phoneNumbers[0]}
-                      </a>
-                    </div>
-                    <div className="flex gap-3 ml-8">
-                      <a href={`tel:${phoneNumbers[1].replace(/[^0-9+]/g, '')}`} className="hover:text-white transition-colors">
-                        {phoneNumbers[1]}
-                      </a>
-                    </div>
+                  {/* Phone Number 1 */}
+                  <li className="flex gap-3">
+                    <Phone className="w-5 h-5 shrink-0 text-primary" />
+                    <a href={`tel:${cleanPhoneNumber(phone1)}`} className="hover:text-white transition-colors">
+                      {phone1}
+                    </a>
+                  </li>
+                  {/* Phone Number 2 */}
+                  <li className="flex gap-3">
+                    <Phone className="w-5 h-5 shrink-0 text-primary" />
+                    <a href={`tel:${cleanPhoneNumber(phone2)}`} className="hover:text-white transition-colors">
+                      {phone2}
+                    </a>
+                  </li>
+                  {/* WhatsApp Number */}
+                  <li className="flex gap-3">
+                    <MessageCircle className="w-5 h-5 shrink-0 text-primary" />
+                    <a 
+                      href={`https://wa.me/${cleanPhoneNumber(whatsapp)}`} 
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-white transition-colors"
+                    >
+                      {whatsapp} (WhatsApp)
+                    </a>
                   </li>
                 </ul>
               </div>
@@ -92,19 +116,26 @@ export function Footer({ data }: { data?: any }) {
               <div>
                 <h4 className="text-lg font-semibold text-white mb-4">Quick Links</h4>
                 <ul className="space-y-2 text-sm">
-
-                  {['Current Openings', 'About Us', 'Community', 'Contact'].map((link, i) => (
+                  {quickLinks.map((link, i) => (
                     <li key={i}>
                       <a
-                        href={link === 'Current Openings' ? '#current-openings' : '#'}
+                        href={link.href}
                         className="hover:text-white hover:pl-1 transition-all duration-200"
                       >
-                        {link}
+                        {link.name}
                       </a>
                     </li>
                   ))}
-                  <li><a target="_blank" href={`${process.env.NEXT_PUBLIC_SITEURL}/studio`} className="hover:text-white hover:pl-1 transition-all duration-200"
-                  >Sanity Studio</a></li>
+                  <li>
+                    <a 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      href={`${process.env.NEXT_PUBLIC_SITEURL}/studio`} 
+                      className="hover:text-white hover:pl-1 transition-all duration-200"
+                    >
+                      Sanity Studio
+                    </a>
+                  </li>
                 </ul>
               </div>
             </ScrollAnimator>
@@ -114,12 +145,8 @@ export function Footer({ data }: { data?: any }) {
           {/* Divider + copyright */}
           <ScrollAnimator variant="fade-up" duration={600} delay={300}>
             <div className="border-t border-slate-700 pt-8">
-              <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-slate-400">
-                <p>&copy; {new Date().getFullYear()} Mélange Rwanda. All rights reserved.</p>
-                <div className="flex gap-4">
-                  <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-                  <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-                </div>
+              <div className=" text-slate-400">
+                <p className="text-center">&copy; {new Date().getFullYear()} Mélange Rwanda. All rights reserved.</p>
               </div>
             </div>
           </ScrollAnimator>
