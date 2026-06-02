@@ -4,7 +4,7 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { Button } from '@/components/ui/button';
-import { ExternalLink, X, MapPin, Building2, Briefcase, ArrowUpRight, Search, FileText } from 'lucide-react';
+import { ExternalLink, X, MapPin, Building2, Briefcase, ArrowUpRight, Search, FileText, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
@@ -46,83 +46,170 @@ function JobModal({ job, index, onClose }: { job: Job; index: number; onClose: (
   if (!mounted) return null;
 
   const modalContent = (
-    /* Backdrop - Fixed, centered positioning */
     <div
       className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-fade-in"
       onClick={onClose}
     >
-      {/* Panel */}
+      {/* Panel - Entire modal scrolls */}
       <div
-        className="bg-white w-full max-w-lg rounded-3xl shadow-2xl p-8 space-y-6 animate-slide-up max-h-[90vh] overflow-y-auto"
+        className="bg-white w-full max-w-lg rounded-3xl shadow-2xl animate-slide-up max-h-[90vh] overflow-y-auto custom-scrollbar"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Header */}
-        <div className="flex items-start justify-between gap-4">
-          <div>
-            <h3 className="text-2xl font-extrabold font-montserrat text-slate-900 leading-tight">{job.title}</h3>
-            <span className={`mt-2 inline-block px-3 py-1 text-xs font-semibold font-inter rounded-full ${typeColors[index % 3]}`}>
-              {job.type}
-            </span>
+        {/* Content wrapper with padding */}
+        <div className="p-8 space-y-6">
+          {/* Header */}
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <h3 className="text-2xl font-extrabold font-montserrat text-slate-900 leading-tight">{job.title}</h3>
+              <span className={`mt-2 inline-block px-3 py-1 text-xs font-semibold font-inter rounded-full ${typeColors[index % 3]}`}>
+                {job.type}
+              </span>
+            </div>
+            <button
+              onClick={onClose}
+              className="shrink-0 p-2 rounded-full hover:bg-slate-100 transition-colors"
+              aria-label="Close"
+            >
+              <X className="w-5 h-5 text-slate-500" />
+            </button>
           </div>
-          <button
-            onClick={onClose}
-            className="shrink-0 p-2 rounded-full hover:bg-slate-100 transition-colors"
-            aria-label="Close"
-          >
-            <X className="w-5 h-5 text-slate-500" />
-          </button>
-        </div>
 
-        {/* Details */}
-        <div className="space-y-3">
-          <div className="flex items-center gap-3 text-slate-600">
-            <Building2 className="w-5 h-5 shrink-0 text-primary" />
-            <span className="font-medium">{job.company}</span>
-          </div>
-          <div className="flex items-center gap-3 text-slate-600">
-            <MapPin className="w-5 h-5 shrink-0 text-primary" />
-            <span className="font-medium">{job.location}</span>
-          </div>
-          <div className="flex items-center gap-3 text-slate-600">
-            <Briefcase className="w-5 h-5 shrink-0 text-primary" />
-            <span className="font-medium">{job.type}</span>
-          </div>
-        </div>
-
-        {/* Role Description */}
-        {job.roleDescription && (
-          <div className="mt-4 pt-4 border-t border-slate-100">
-            <h4 className="font-semibold text-slate-900 mb-3 flex items-center gap-2">
-              <FileText className="w-4 h-4 text-primary" />
-              Role Description
-            </h4>
-            <div className="text-sm text-slate-600 leading-relaxed whitespace-pre-wrap max-h-48 overflow-y-auto pr-2 custom-scrollbar">
-              {job.roleDescription}
+          {/* Details */}
+          <div className="space-y-3">
+            <div className="flex items-center gap-3 text-slate-600">
+              <Building2 className="w-5 h-5 shrink-0 text-primary" />
+              <span className="font-medium">{job.company}</span>
+            </div>
+            <div className="flex items-center gap-3 text-slate-600">
+              <MapPin className="w-5 h-5 shrink-0 text-primary" />
+              <span className="font-medium">{job.location}</span>
+            </div>
+            <div className="flex items-center gap-3 text-slate-600">
+              <Briefcase className="w-5 h-5 shrink-0 text-primary" />
+              <span className="font-medium">{job.type}</span>
             </div>
           </div>
-        )}
 
-        {/* CTA */}
-        <Button
-          asChild
-          size="lg"
-          className="w-full rounded-full bg-primary hover:bg-primary/90 text-white font-bold text-base shadow-lg hover:shadow-primary/30 hover:scale-105 transition-all"
-        >
-          <a href={job.link} target="_blank" rel="noopener noreferrer">
-            Apply Now <ArrowUpRight className="w-4 h-4 ml-2" />
-          </a>
-        </Button>
+          {/* Role Description - No separate scroll, just normal flow */}
+          {job.roleDescription && (
+            <div className="pt-4 border-t border-slate-100">
+              <h4 className="font-semibold text-slate-900 mb-3 flex items-center gap-2">
+                <FileText className="w-4 h-4 text-primary" />
+                Role Description
+              </h4>
+              <div className="text-sm text-slate-600 leading-relaxed whitespace-pre-wrap">
+                {job.roleDescription}
+              </div>
+            </div>
+          )}
+
+          {/* CTA */}
+          <Button
+            asChild
+            size="lg"
+            className="w-full rounded-full bg-primary hover:bg-primary/90 text-white font-bold text-base shadow-lg hover:shadow-primary/30 hover:scale-105 transition-all"
+          >
+            <a href={job.link} target="_blank" rel="noopener noreferrer">
+              Apply Now <ArrowUpRight className="w-4 h-4 ml-2" />
+            </a>
+          </Button>
+        </div>
       </div>
     </div>
   );
 
-  // Render modal as a portal outside the table
   return typeof document !== 'undefined' ? ReactDOM.createPortal(modalContent, document.body) : null;
+}
+
+/* ─── Pagination Component ──────────────────────────────────────────────── */
+function Pagination({ currentPage, totalPages, onPageChange }: { 
+  currentPage: number; 
+  totalPages: number; 
+  onPageChange: (page: number) => void;
+}) {
+  const getPageNumbers = () => {
+    const pages = [];
+    const maxVisible = 5;
+    
+    if (totalPages <= maxVisible) {
+      for (let i = 1; i <= totalPages; i++) {
+        pages.push(i);
+      }
+    } else {
+      if (currentPage <= 3) {
+        for (let i = 1; i <= 4; i++) pages.push(i);
+        pages.push('...');
+        pages.push(totalPages);
+      } else if (currentPage >= totalPages - 2) {
+        pages.push(1);
+        pages.push('...');
+        for (let i = totalPages - 3; i <= totalPages; i++) pages.push(i);
+      } else {
+        pages.push(1);
+        pages.push('...');
+        for (let i = currentPage - 1; i <= currentPage + 1; i++) pages.push(i);
+        pages.push('...');
+        pages.push(totalPages);
+      }
+    }
+    
+    return pages;
+  };
+
+  return (
+    <div className="flex items-center justify-between gap-4 flex-wrap">
+      <div className="text-sm text-muted-foreground">
+        Page {currentPage} of {totalPages}
+      </div>
+      <div className="flex items-center gap-2">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => onPageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+          className="rounded-full h-9 w-9 p-0"
+        >
+          <ChevronLeft className="h-4 w-4" />
+        </Button>
+        
+        <div className="flex items-center gap-1">
+          {getPageNumbers().map((page, idx) => (
+            <React.Fragment key={idx}>
+              {page === '...' ? (
+                <span className="px-2 text-muted-foreground">...</span>
+              ) : (
+                <Button
+                  variant={currentPage === page ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => onPageChange(page as number)}
+                  className={`rounded-full h-9 w-9 p-0 ${currentPage === page ? 'bg-primary hover:bg-primary/90' : ''}`}
+                >
+                  {page}
+                </Button>
+              )}
+            </React.Fragment>
+          ))}
+        </div>
+        
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => onPageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+          className="rounded-full h-9 w-9 p-0"
+        >
+          <ChevronRight className="h-4 w-4" />
+        </Button>
+      </div>
+    </div>
+  );
 }
 
 /* ─── Job Table ─────────────────────────────────────────────────────────── */
 export function JobTable({ jobs }: JobTableProps) {
   const [selectedJob, setSelectedJob] = useState<{ job: Job; index: number } | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const JOBS_PER_PAGE = 5;
 
   const [search, setSearch] = useState('');
   const [companyFilter, setCompanyFilter] = useState('all');
@@ -132,10 +219,8 @@ export function JobTable({ jobs }: JobTableProps) {
   const { filteredJobs, companies, locations, types } = useMemo(() => {
     if (!jobs) return { filteredJobs: [], companies: [], locations: [], types: [] };
 
-    // Sort alphabetical
     const sorted = [...jobs].sort((a, b) => a.title.localeCompare(b.title));
 
-    // Filter
     const filtered = sorted.filter(job => {
       const matchesSearch = job.title.toLowerCase().includes(search.toLowerCase());
       const matchesCompany = companyFilter === 'all' || job.company === companyFilter;
@@ -152,7 +237,17 @@ export function JobTable({ jobs }: JobTableProps) {
     };
   }, [jobs, search, companyFilter, locationFilter, typeFilter]);
 
-  // Helper function to display friendly labels
+  // Reset to first page when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [search, companyFilter, locationFilter, typeFilter]);
+
+  // Pagination logic
+  const totalPages = Math.ceil(filteredJobs.length / JOBS_PER_PAGE);
+  const startIndex = (currentPage - 1) * JOBS_PER_PAGE;
+  const endIndex = startIndex + JOBS_PER_PAGE;
+  const currentJobs = filteredJobs.slice(startIndex, endIndex);
+
   const getDisplayLabel = (value: string, type: 'company' | 'location' | 'type') => {
     if (value === 'all') {
       switch (type) {
@@ -177,7 +272,7 @@ export function JobTable({ jobs }: JobTableProps) {
 
   return (
     <div className="flex flex-col gap-6">
-      {/* ── Filters ── */}
+      {/* Filters */}
       <div className="flex flex-col sm:flex-row gap-4 mb-2 animate-fade-in">
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -249,43 +344,46 @@ export function JobTable({ jobs }: JobTableProps) {
         </div>
       ) : (
         <>
-          {/* ── MOBILE: Card list (single column) ── */}
+          {/* Mobile: Card list */}
           <div className="lg:hidden space-y-3">
-            {filteredJobs.map((job, index) => (
-              <div
-                key={index}
-                className="flex items-center justify-between gap-4 bg-slate-50 border border-slate-100 rounded-2xl px-5 py-4 shadow-sm animate-slide-up"
-                style={{ animationDelay: `${index * 60}ms` }}
-              >
-                <div className="min-w-0 flex-1">
-                  <p className="font-bold text-slate-900 truncate">{job.title}</p>
-                  <p className="text-xs text-muted-foreground mt-0.5">{job.company}</p>
-                  <span className={`mt-1 inline-block px-2 py-0.5 text-xs font-semibold rounded-full ${typeColors[index % 3]}`}>
-                    {job.type}
-                  </span>
+            {currentJobs.map((job, idx) => {
+              const originalIndex = startIndex + idx;
+              return (
+                <div
+                  key={originalIndex}
+                  className="flex items-center justify-between gap-4 bg-slate-50 border border-slate-100 rounded-2xl px-5 py-4 shadow-sm animate-slide-up"
+                  style={{ animationDelay: `${idx * 60}ms` }}
+                >
+                  <div className="min-w-0 flex-1">
+                    <p className="font-bold text-slate-900 truncate">{job.title}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">{job.company}</p>
+                    <span className={`mt-1 inline-block px-2 py-0.5 text-xs font-semibold rounded-full ${typeColors[originalIndex % 3]}`}>
+                      {job.type}
+                    </span>
+                  </div>
+                  <div className="flex flex-col gap-2 shrink-0">
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => setSelectedJob({ job, index: originalIndex })}
+                      className="rounded-full text-xs px-4 shadow-sm h-8 bg-primary hover:bg-primary/90 text-white"
+                    >
+                      Description
+                    </Button>
+                    <Button
+                      asChild
+                      size="sm"
+                      className="rounded-full bg-primary hover:bg-primary/90 text-white text-xs px-4 shadow-sm h-8"
+                    >
+                      <a href={job.link} target="_blank" rel="noopener noreferrer">Apply</a>
+                    </Button>
+                  </div>
                 </div>
-                <div className="flex flex-col gap-2 shrink-0">
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    onClick={() => setSelectedJob({ job, index })}
-                    className="rounded-full text-xs px-4 shadow-sm h-8 bg-primary hover:bg-primary/90 text-white"
-                  >
-                    Description
-                  </Button>
-                  <Button
-                    asChild
-                    size="sm"
-                    className="rounded-full bg-primary hover:bg-primary/90 text-white text-xs px-4 shadow-sm h-8"
-                  >
-                    <a href={job.link} target="_blank" rel="noopener noreferrer">Apply</a>
-                  </Button>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
-          {/* ── DESKTOP: Full table (no horizontal scroll) ── */}
+          {/* Desktop: Full table */}
           <div className="hidden lg:block w-full">
             <table className="w-full table-auto text-sm">
               <thead>
@@ -308,54 +406,57 @@ export function JobTable({ jobs }: JobTableProps) {
                 </tr>
               </thead>
               <tbody>
-                {filteredJobs.map((job, index) => (
-                  <tr
-                    key={index}
-                    className="border-b border-border/60 hover:bg-primary/5 transition-all duration-200 animate-slide-up group"
-                    style={{ animationDelay: `${index * 60}ms` }}
-                  >
-                    <td className="py-4 px-4 font-semibold text-foreground group-hover:text-primary transition-colors break-words">
-                      {job.title}
-                    </td>
-                    <td className="py-4 px-4 text-muted-foreground break-words">
-                      {job.company}
-                    </td>
-                    <td className="py-4 px-4 text-muted-foreground break-words">
-                      {job.location}
-                    </td>
-                    <td className="py-4 px-4 whitespace-nowrap">
-                      <span className={`px-3 py-1.5 text-xs font-semibold rounded-full ${typeColors[index % 3]}`}>
-                        {job.type}
-                      </span>
-                    </td>
-                    <td className="py-4 px-4 text-center">
-                      <div className="flex items-center justify-center gap-3">
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          onClick={() => setSelectedJob({ job, index })}
-                          className="rounded-full bg-primary hover:bg-primary/90 text-white hover:scale-105 transition-transform shadow-sm hover:shadow-primary/30 hover:shadow-md text-sm px-4 h-9"
-                        >
-                          Role Description
-                        </Button>
-                        <Button
-                          asChild
-                          size="sm"
-                          className="rounded-full bg-primary hover:bg-primary/90 text-white hover:scale-105 transition-transform shadow-sm hover:shadow-primary/30 hover:shadow-md text-sm px-4 h-9"
-                        >
-                          <a href={job.link} target="_blank" rel="noopener noreferrer">
-                            Apply <ExternalLink className="w-3 h-3 ml-1" />
-                          </a>
-                        </Button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
+                {currentJobs.map((job, idx) => {
+                  const originalIndex = startIndex + idx;
+                  return (
+                    <tr
+                      key={originalIndex}
+                      className="border-b border-border/60 hover:bg-primary/5 transition-all duration-200 animate-slide-up group"
+                      style={{ animationDelay: `${idx * 60}ms` }}
+                    >
+                      <td className="py-4 px-4 font-semibold text-foreground group-hover:text-primary transition-colors break-words">
+                        {job.title}
+                      </td>
+                      <td className="py-4 px-4 text-muted-foreground break-words">
+                        {job.company}
+                      </td>
+                      <td className="py-4 px-4 text-muted-foreground break-words">
+                        {job.location}
+                      </td>
+                      <td className="py-4 px-4 whitespace-nowrap">
+                        <span className={`px-3 py-1.5 text-xs font-semibold rounded-full ${typeColors[originalIndex % 3]}`}>
+                          {job.type}
+                        </span>
+                      </td>
+                      <td className="py-4 px-4 text-center">
+                        <div className="flex items-center justify-center gap-3">
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => setSelectedJob({ job, index: originalIndex })}
+                            className="rounded-full bg-primary hover:bg-primary/90 text-white hover:scale-105 transition-transform shadow-sm hover:shadow-primary/30 hover:shadow-md text-sm px-4 h-9"
+                          >
+                            Role Description
+                          </Button>
+                          <Button
+                            asChild
+                            size="sm"
+                            className="rounded-full bg-primary hover:bg-primary/90 text-white hover:scale-105 transition-transform shadow-sm hover:shadow-primary/30 hover:shadow-md text-sm px-4 h-9"
+                          >
+                            <a href={job.link} target="_blank" rel="noopener noreferrer">
+                              Apply <ExternalLink className="w-3 h-3 ml-1" />
+                            </a>
+                          </Button>
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
 
-          {/* ── TABLET: Slightly smaller table view ── */}
+          {/* Tablet: Slightly smaller table view */}
           <div className="hidden sm:block lg:hidden w-full overflow-x-auto">
             <table className="min-w-[800px] w-full text-sm">
               <thead>
@@ -378,55 +479,69 @@ export function JobTable({ jobs }: JobTableProps) {
                 </tr>
               </thead>
               <tbody>
-                {filteredJobs.map((job, index) => (
-                  <tr
-                    key={index}
-                    className="border-b border-border/60 hover:bg-primary/5 transition-all duration-200 animate-slide-up group"
-                  >
-                    <td className="py-3 px-3 font-semibold text-foreground group-hover:text-primary transition-colors">
-                      {job.title}
-                    </td>
-                    <td className="py-3 px-3 text-muted-foreground">
-                      {job.company}
-                    </td>
-                    <td className="py-3 px-3 text-muted-foreground">
-                      {job.location}
-                    </td>
-                    <td className="py-3 px-3 whitespace-nowrap">
-                      <span className={`px-2 py-1 text-xs font-semibold rounded-full ${typeColors[index % 3]}`}>
-                        {job.type}
-                      </span>
-                    </td>
-                    <td className="py-3 px-3 text-center">
-                      <div className="flex items-center justify-center gap-2">
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          onClick={() => setSelectedJob({ job, index })}
-                          className="rounded-full text-xs px-3 h-8"
-                        >
-                          Details
-                        </Button>
-                        <Button
-                          asChild
-                          size="sm"
-                          className="rounded-full bg-primary hover:bg-primary/90 text-white text-xs px-3 h-8"
-                        >
-                          <a href={job.link} target="_blank" rel="noopener noreferrer">
-                            Apply
-                          </a>
-                        </Button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
+                {currentJobs.map((job, idx) => {
+                  const originalIndex = startIndex + idx;
+                  return (
+                    <tr
+                      key={originalIndex}
+                      className="border-b border-border/60 hover:bg-primary/5 transition-all duration-200 animate-slide-up group"
+                    >
+                      <td className="py-3 px-3 font-semibold text-foreground group-hover:text-primary transition-colors">
+                        {job.title}
+                      </td>
+                      <td className="py-3 px-3 text-muted-foreground">
+                        {job.company}
+                      </td>
+                      <td className="py-3 px-3 text-muted-foreground">
+                        {job.location}
+                      </td>
+                      <td className="py-3 px-3 whitespace-nowrap">
+                        <span className={`px-2 py-1 text-xs font-semibold rounded-full ${typeColors[originalIndex % 3]}`}>
+                          {job.type}
+                        </span>
+                      </td>
+                      <td className="py-3 px-3 text-center">
+                        <div className="flex items-center justify-center gap-2">
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => setSelectedJob({ job, index: originalIndex })}
+                            className="rounded-full text-xs px-3 h-8"
+                          >
+                            Details
+                          </Button>
+                          <Button
+                            asChild
+                            size="sm"
+                            className="rounded-full bg-primary hover:bg-primary/90 text-white text-xs px-3 h-8"
+                          >
+                            <a href={job.link} target="_blank" rel="noopener noreferrer">
+                              Apply
+                            </a>
+                          </Button>
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
+
+          {/* Pagination Component */}
+          {totalPages > 1 && (
+            <div className="pt-4 border-t border-border/40 animate-fade-in">
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={setCurrentPage}
+              />
+            </div>
+          )}
         </>
       )}
 
-      {/* ── Modal ── */}
+      {/* Modal */}
       {selectedJob && (
         <JobModal
           job={selectedJob.job}
