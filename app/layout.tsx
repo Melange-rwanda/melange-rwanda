@@ -74,7 +74,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <head />
+      <head>
+        {/* Google tag (gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-BY82R2Y3JT"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-BY82R2Y3JT');
+            `,
+          }}
+        />
+      </head>
       <body className={`${inter.variable} ${playfair.variable} ${montserrat.variable} font-sans antialiased bg-background text-foreground overflow-x-hidden`}>
         {children}
         <Analytics />
