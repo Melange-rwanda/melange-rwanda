@@ -126,7 +126,7 @@ export function Footer({ data }: { data?: any }) {
                       </a>
                     </li>
                   ))}
-                  <li>
+                  {/* <li>
                     <a 
                       target="_blank" 
                       rel="noopener noreferrer"
@@ -135,7 +135,7 @@ export function Footer({ data }: { data?: any }) {
                     >
                       Sanity Studio
                     </a>
-                  </li>
+                  </li> */}
                 </ul>
               </div>
             </ScrollAnimator>
